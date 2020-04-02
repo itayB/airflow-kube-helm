@@ -98,8 +98,8 @@ airflow:
     ##
     ## Configure Git repository to fetch DAGs
     git:
-      url: https://github.com/itayB/airflow-dag.git #https://github.com/apache/airflow
-      branch: master
+      url: https://github.com/itayB/airflow-kube-helm.git
+      branch: k8s-operator
       subpath: dags
       ##
       ## Number of seconds to wait between git synchronizations
