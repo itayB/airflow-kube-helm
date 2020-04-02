@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "airflow.fullname" . }}-web
@@ -28,6 +28,7 @@ spec:
         app: {{ template "airflow.name" . }}-web
         release: {{ .Release.Name }}
     spec:
+      serviceAccountName: {{ template "airflow.fullname" . }}-cluster-access
       securityContext:
         fsGroup: 1000
       restartPolicy: Always
@@ -91,16 +92,27 @@ spec:
             value: repo
           - name: GIT_SYNC_WAIT
             value: "{{ .Values.airflow.dags.git.wait }}"
+          {{ if .Values.airflow.dags.git.username }}
           - name: GIT_SYNC_USERNAME
             valueFrom:
               secretKeyRef:
                 name: git
                 key: GIT_SYNC_USERNAME
+          {{- end }}
+          {{ if .Values.airflow.dags.git.username }}
           - name: GIT_SYNC_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: git
                 key: GIT_SYNC_PASSWORD
+          {{- end }}
+          {{ if .Values.airflow.dags.git.rev }}
+          - name: GIT_SYNC_REV
+            valueFrom:
+              secretKeyRef:
+                name: git
+                key: GIT_SYNC_REV
+          {{- end }}
       {{- end }}
       - name: nginx
         image: nginx
