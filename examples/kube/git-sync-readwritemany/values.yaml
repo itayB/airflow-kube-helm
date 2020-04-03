@@ -26,11 +26,12 @@ airflow:
 ingress:
   enabled: false
 
-postgresql:
+mysql:
   enabled: true
-  postgresUser: postgres
-  postgresPassword: airflow
-  postgresDatabase: airflow
+  db:
+    name: airflow_db
+    user: airflow_user
+    password: airflow_password
   persistence:
     enabled: true
     accessMode: ReadWriteOnce

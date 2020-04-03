@@ -22,11 +22,11 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
-Create a default fully qualified postgresql name.
+Create a default fully qualified mysql name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
-{{- define "airflow.postgresql.fullname" -}}
-{{- $name := default "postgresql" .Values.postgresql.nameOverride -}}
+{{- define "airflow.mysql.fullname" -}}
+{{- $name := default "mysql" .Values.mysql.nameOverride -}}
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
