@@ -16,7 +16,7 @@ default_args = {
     "start_date": days_ago(2)
 }
 dag = DAG(DAG_NAME, schedule_interval="*/10 * * * *", default_args=default_args)
-namespace = 'airflow'
+namespace = 'airflow-ml'
 
 with dag:
     k1 = KubernetesPodOperator(
