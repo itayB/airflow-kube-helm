@@ -30,7 +30,6 @@ with dag:
         task_id="task1",
         is_delete_operator_pod=True,
         hostnetwork=False,
-        priority_class_name="medium",
     )
 
 with dag:
@@ -45,7 +44,6 @@ with dag:
         task_id="task2",
         is_delete_operator_pod=True,
         hostnetwork=False,
-        priority_class_name="medium",
     )
 
 with dag:
@@ -60,7 +58,6 @@ with dag:
         task_id="task3",
         is_delete_operator_pod=True,
         hostnetwork=False,
-        priority_class_name="medium",
     )
 
 k2.set_upstream(k1)
